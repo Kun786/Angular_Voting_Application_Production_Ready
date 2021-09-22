@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row" *ngFor="let data of _Data">
+        <div class="col-lg-4">
+            <div class="card card-margin">
+                <div class="card-header no-border">
+                    <i class="fas fa-window-close" (click)="Delete(data._Id)"></i>
+                </div>
+                <div class="card-body pt-0">
+                    <div class="widget-49">
+                        <div class="widget-49-title-wrapper">
+                            <div class="widget-49-date-primary">
+                                <span class="widget-49-date-day">{{data.Title}}</span>
+                            </div>
+                            <div class="widget-49-meeting-info">
+                                <a [href]="data.Link" target="blank">
+                                    <span class="widget-49-pro-title">PRO-08235 DeskOpe. Website</span><br>
+                                    <span class="widget-49-meeting-time">12:00 to 13.30 Hrs</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="widget-49-meeting-action">
+                            <h5>Points {{data._Points}}</h5>
+                            <img class="col" [src]="data.ImageUrl" [alt]="data.Title">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <i class="fas fa-arrow-up col-6 d-flex justify-content-center text-info" (click)="UpVote(data._Id)">UpVote</i>
+                    <i class="fas fa-arrow-down col-6 d-flex justify-content-center text-info" (click)="DownVote(data._Id)">DownVote</i>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
