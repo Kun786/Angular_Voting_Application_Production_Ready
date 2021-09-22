@@ -36,7 +36,7 @@ export class NamesComponent implements OnInit, OnChanges {
             Title: _KeyPair.Title,
             Link: _KeyPair.Link,
             ImageUrl: _KeyPair.ImageUrl,
-            _Points:0
+            _Points: 0
           })
         })
         this._TemporaryArray.push(data);
@@ -55,14 +55,14 @@ export class NamesComponent implements OnInit, OnChanges {
 
 
   //Voting to UpVote
-  UpVote(_Id:any){
+  UpVote(_Id: any) {
     this._LocalStorageData = this._LocalStorageService.GetLocalStorageForArticleData();
-    this._LocalStorageData.map((_KeyPair:any)=>{
-      if(_KeyPair._Id === _Id){
-       _KeyPair._Points++;
-       this._LocalStorageService.SetLocalStorageForArticleData(this._LocalStorageData);
-       this.OutgoingValueToChildComponent = null;
-       this.ngOnInit();
+    this._LocalStorageData.map((_KeyPair: any) => {
+      if (_KeyPair._Id === _Id) {
+        _KeyPair._Points++;
+        this._LocalStorageService.SetLocalStorageForArticleData(this._LocalStorageData);
+        this.OutgoingValueToChildComponent = null;
+        this.ngOnInit();
       }
     })
   }
@@ -70,8 +70,18 @@ export class NamesComponent implements OnInit, OnChanges {
 
 
   //Voting to DownVote
-  DownVote(_Id:any){
-   
+  DownVote(_Id: any) {
+    this._LocalStorageData = this._LocalStorageService.GetLocalStorageForArticleData();
+    this._LocalStorageData.map((_KeyPair: any) => {
+      if (_KeyPair._Id === _Id) {
+        if (_KeyPair._Points != 0) {
+          _KeyPair._Points--;
+          this._LocalStorageService.SetLocalStorageForArticleData(this._LocalStorageData);
+          this.OutgoingValueToChildComponent = null;
+          this.ngOnInit();
+        }
+      }
+    })
   }
   //Voting to DownVote
 
