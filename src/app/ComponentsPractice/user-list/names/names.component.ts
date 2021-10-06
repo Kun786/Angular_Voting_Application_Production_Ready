@@ -46,9 +46,12 @@ export class NamesComponent implements OnInit, OnChanges {
       this._LocalStorageService.SetLocalStorageForArticleData(this._TemporaryArray);
       this._Data = this._LocalStorageService.GetLocalStorageForArticleData();
       this._TemporaryArray = [];
+      console.log(this._Data.length);
       // this.AddBackGroundImage['background-image'] = 'url('+this._Data.ImageUrl+')';
     } else {
       this._Data = this._LocalStorageService.GetLocalStorageForArticleData();
+      this._TemporaryArray = [];
+      console.log(this._Data.length);
     }
   }
   //Adding Article To Local Storage
@@ -60,6 +63,7 @@ export class NamesComponent implements OnInit, OnChanges {
     this._LocalStorageData.map((_KeyPair: any) => {
       if (_KeyPair._Id === _Id) {
         _KeyPair._Points++;
+        this._LocalStorageData.sort((a:any, b:any) => parseFloat(b._Points) - parseFloat(a._Points));
         this._LocalStorageService.SetLocalStorageForArticleData(this._LocalStorageData);
         this.OutgoingValueToChildComponent = null;
         this.ngOnInit();
