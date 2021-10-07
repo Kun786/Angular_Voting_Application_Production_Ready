@@ -8,13 +8,16 @@ import { NamesComponent } from './ComponentsPractice/user-list/names/names.compo
 import { UserListComponent } from './ComponentsPractice/user-list/user-list.component';
 import { ApexChartsComponent } from './ComponentsPractice/apex-charts/apex-charts.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
-
+import { ChangeBackGroundColorDirective } from './CustomDirective/ChangeBackGroundColor/change-back-ground-color.directive';
+import { ChangeBorderColorDirective } from './CustomDirective/ChangeBorderColor/change-border-color.directive';
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
     NamesComponent,
     ApexChartsComponent,
+    ChangeBackGroundColorDirective,
+    ChangeBorderColorDirective,
   ],
   imports: [
     BrowserModule,
