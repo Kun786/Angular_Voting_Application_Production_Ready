@@ -44,6 +44,7 @@ export class NamesComponent implements OnInit, OnChanges {
       this._Data = this._LocalStorageService.GetLocalStorageForArticleData();
       this._TemporaryArray = [];
     } else {
+      //ToDo if the local storage is empty dont run anything
       this._Data = this._LocalStorageService.GetLocalStorageForArticleData();
       this._GetHighestPoints = this._Data[0]._Points;
     }
