@@ -24,8 +24,8 @@ export class NamesComponent implements OnInit, OnChanges {
 
   //Adding Article To Local Storage
   private processArticle(data: any): void {
+    let _LocalStorageData = this._LocalStorageService.GetLocalStorageForArticleData();
     if (data != null) {
-      let _LocalStorageData = this._LocalStorageService.GetLocalStorageForArticleData();
       if (_LocalStorageData != null) {
         _LocalStorageData.map((_KeyPair: any) => {
           this._TemporaryArray.push({
@@ -45,8 +45,12 @@ export class NamesComponent implements OnInit, OnChanges {
       this._TemporaryArray = [];
     } else {
       //ToDo if the local storage is empty dont run anything
-      this._Data = this._LocalStorageService.GetLocalStorageForArticleData();
-      this._GetHighestPoints = this._Data[0]._Points;
+      if (_LocalStorageData != null) {
+        this._Data = this._LocalStorageService.GetLocalStorageForArticleData();
+        this._GetHighestPoints = this._Data[0]._Points;
+      }else{
+        this._Data = null;
+      }
     }
   }
   //Adding Article To Local Storage
@@ -55,11 +59,10 @@ export class NamesComponent implements OnInit, OnChanges {
   //Voting to UpVote
   UpVote(_Id: any) {
     let _LocalStorageData = this._LocalStorageService.GetLocalStorageForArticleData();
-    console.log( _LocalStorageData);
     let _SortedItems = _LocalStorageData
       .map((_KeyPair: any) => {
         if (_KeyPair._Id === _Id) {
-            _KeyPair._Points++;
+          _KeyPair._Points++;
         }
         return _KeyPair;
       })
@@ -85,7 +88,6 @@ export class NamesComponent implements OnInit, OnChanges {
 
 
   DownVote(_Id: any) {
-    console.time('Downvote Starting');
     let _LocalStorageData = this._LocalStorageService.GetLocalStorageForArticleData();
     const _SortedItems = _LocalStorageData
       .map((_KeyPair: any) => {
@@ -100,7 +102,6 @@ export class NamesComponent implements OnInit, OnChanges {
     this._LocalStorageService.SetLocalStorageForArticleData(_SortedItems);
     this.OutgoingValueToChildComponent = null;
     this.ngOnInit();
-    console.timeEnd('Downvote Starting');
     // _LocalStorageData = this._LocalStorageService.GetLocalStorageForArticleData();
     // _LocalStorageData.map((_KeyPair: any) => {
     //   if (_KeyPair._Id === _Id) {
@@ -118,23 +119,41 @@ export class NamesComponent implements OnInit, OnChanges {
 
 
   //Delete Article Card From Local Storage
+
+
   Delete(_Id: any) {
+    // console.time('Start');
+    // let _ObjectToDelete: any;
+    // let _LocalStorageData = this._LocalStorageService.GetLocalStorageForArticleData();
+    // if (_LocalStorageData.length > 1) {
+    //   let _SortedItems = _LocalStorageData.map((_KeyPair: any) => {
+    //     if (_KeyPair._Id === _Id) {
+    //       return _KeyPair;
+    //     }else{
+    //       void(0);
+    //     }
+    //   })
+    //   console.log(_SortedItems);
+    //   // this._LocalStorageService.SetLocalStorageForArticleData(_SortedItems);
+    // } else {
+    //   this._LocalStorageService.ClearLocalStorage();
+    // }
+    // this.OutgoingValueToChildComponent = null;
+    // this.ngOnInit();
+    // console.timeEnd('Start');
     let _LocalStorageData = this._LocalStorageService.GetLocalStorageForArticleData();
     if (_LocalStorageData.length > 1) {
-      _LocalStorageData.map((_KeyPair: any) => {
-        if (_KeyPair._Id === _Id) {
-          let _LocalStorageToUpdate = _LocalStorageData.filter((_KeyPair: any) => _KeyPair._Id != _Id);
-          this._LocalStorageService.SetLocalStorageForArticleData(_LocalStorageToUpdate);
-        } else {
-          void (0);
-        }
-      })
-    } else {
+      let _FilteredArray = _LocalStorageData.filter((_KeyPair: any) => _KeyPair._Id != _Id);
+      this._LocalStorageService.SetLocalStorageForArticleData(_FilteredArray);
+    }
+    else {
       this._LocalStorageService.ClearLocalStorage();
     }
     this.OutgoingValueToChildComponent = null;
     this.ngOnInit();
   }
+
+
   //Delete Article Card From Local Storage
 
 

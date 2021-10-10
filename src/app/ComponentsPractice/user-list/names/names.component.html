@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row" *ngFor="let data of _Data">
         <div class="col-lg-4">
-            <div class="card card-margin" [ngClass]="{'border border-success border-2': _GetHighestPoints===data._Points}">
+            <div class="card card-margin" [ngClass]="{'border border-success border-2': _GetHighestPoints === data._Points}">
                 <div class="card-header no-border">
                     <i class="fas fa-window-close" (click)="Delete(data._Id)"></i>
                 </div>
