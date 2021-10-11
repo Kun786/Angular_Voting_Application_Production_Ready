@@ -30,6 +30,9 @@ export class UserListComponent implements OnInit{
       ImageUrl:this._ImageUrl,
       _Points:0
     }
+    title.value="";
+    link.value="";
+    ImageUrl.value="";
   }
 
 
