@@ -14,11 +14,15 @@ export class NamesComponent implements OnInit, OnChanges {
   _TemporaryArray: any = [];
   constructor(private _LocalStorageService: LocalStorageService) { }
   ngOnInit(): void {
-    this.processArticle(this.OutgoingValueToChildComponent);
+    console.log('ngoninti');
+    console.log(this.OutgoingValueToChildComponent);
+    // this.processArticle(this.OutgoingValueToChildComponent);
   }
 
   ngOnChanges(): void {
-    this.processArticle(this.OutgoingValueToChildComponent);
+    console.log('ngonchange');
+    console.log(this.OutgoingValueToChildComponent);
+    // this.processArticle(this.OutgoingValueToChildComponent);
   }
 
 

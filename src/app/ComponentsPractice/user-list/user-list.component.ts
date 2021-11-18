@@ -18,8 +18,8 @@ export class UserListComponent implements OnInit{
   }
 
 
-  SubmitValues(title:HTMLInputElement,link:HTMLInputElement,ImageUrl:HTMLInputElement){
-    let _Key = (Math.random() + 1).toString(36).substring(7);
+  SubmitValues(title:HTMLInputElement,link:HTMLInputElement,ImageUrl:HTMLInputElement){;
+    const _Key = (Math.random() + 1).toString(36).substring(7);
     this._Title=title.value;
     this._Link=link.value;
     this._ImageUrl=ImageUrl.value;
